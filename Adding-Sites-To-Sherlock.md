@@ -60,6 +60,8 @@ Site JSON Data
     "errorType": "message",
     "rank": 1544,
     "url": "https://{}.basecamphq.com",
-    "urlMain": "https://basecamp.com/"
+    "urlMain": "https://basecamp.com/",
+    "username_claimed":   "blue",
+    "username_unclaimed": "noonewouldeverusethis7"
   },
 ```
