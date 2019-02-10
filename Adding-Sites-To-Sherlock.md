@@ -1,3 +1,64 @@
+# Site Analysis
+
+To add sites to Sherlock is relatively straight forward.  But, there is some background that will help
+you in your task.
+
+Sherlock relies on the site's designers providing a unique URL for a registered username.  To determine
+if a username is available, Sherlock queries that URL, and uses to response to understand if there is
+a claimed username already there.
+
+The [data.json](https://github.com/TheYahya/sherlock/blob/master/data.json) file contains all of the
+information about which sites Sherlock will query usernames for, and how that query should be 
+carried out.
+
+Here is an illustrative entry for one site in the 
+[data.json](https://github.com/TheYahya/sherlock/blob/master/data.json) file.  Following this, is a
+more detailed description of each entry.
+
+```
+  "Some Cool Site That Everyone Loves": {
+    "errorType": "status_code",
+    "rank": 183,
+    "regexCheck": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+    "url": "https://somecoolsitethateveryoneloves.com/members/{}",
+    "urlMain": "https://somecoolsitethateveryoneloves.com",
+    "username_claimed": "blue",
+    "username_unclaimed": "noonewouldeverusethis7"
+  },
+```
+
+- **errorType**
+
+  Required field that defines the detection method.
+  See the Detection Algorithms section below for more details about the options here.
+- **rank**
+
+  Optional field that indicates how popular the site is.
+  Note that the developer does not have to fill this in manually...  There is an automated
+  process that enters this information.
+- **regexCheck**
+
+  Optional field that specifies a regular expression that only matches on a valid username.
+  This is used to flag usernames that may not be allowable on a given site.  Note that
+  a username that is valid on one site may not be allowed on another site.
+- **url**
+
+  Required field that defines the format of a member's URL on the site.
+  Use the curly brackets (i.e. "{}") to record where the username appears in the URL.
+- **urlMain**
+
+  Required field that defines the site's URL.
+- **username_claimed**
+
+  Optional field that defines a username that is claimed.  This is used for tests.
+  Note that even though this field is optional for Sherlock functionality, the tests
+  will fail if a proper value is not supplied.
+- **username_unclaimed**
+
+  Optional field that defines a username that has not been claimed.  This is used for tests.
+  Note that even though this field is optional for Sherlock functionality, the tests
+  will fail if a proper value is not supplied.
+
 # Detection Algorithms
 With the large variety of websites, there are many different ways that detection of the availability of a username can go off the rails.  So, it is important when a new site is added to configure the detection as robustly as possible.  Likewise, it is crucial that tests are written for the site so that we can understand if the detection starts failing for certain sites.
 
