@@ -59,6 +59,10 @@ more detailed description of each entry.
   Note that even though this field is optional for Sherlock functionality, the tests
   will fail if a proper value is not supplied.
 
+- **urlProbe**
+
+  Optional feild that defines the normal url seen by people out on the web. If this is not given, then **url** will be used as the **urlProbe**.
+
 # Detection Algorithms
 With the large variety of websites, there are many different ways that detection of the availability of a username can go off the rails.  So, it is important when a new site is added to configure the detection as robustly as possible.  Likewise, it is crucial that tests are written for the site so that we can understand if the detection starts failing for certain sites.
 
