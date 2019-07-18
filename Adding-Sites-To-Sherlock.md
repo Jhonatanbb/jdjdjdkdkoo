@@ -61,7 +61,7 @@ more detailed description of each entry.
 
 - **urlProbe**
 
-  Optional feild that defines the normal url seen by people out on the web. If this is not given, then **url** will be used as the **urlProbe**.
+  Optional field that defines a special URL which should be used to determine if a username is supported (this is normally an API call).  If this is not given, then **url** will be used to check for the existence of a username.  This field is useful if detecting the username using **url** is not reliable.  Note that only unauthenticated API calls are supported.
 
 # Detection Algorithms
 With the large variety of websites, there are many different ways that detection of the availability of a username can go off the rails.  So, it is important when a new site is added to configure the detection as robustly as possible.  Likewise, it is crucial that tests are written for the site so that we can understand if the detection starts failing for certain sites.
