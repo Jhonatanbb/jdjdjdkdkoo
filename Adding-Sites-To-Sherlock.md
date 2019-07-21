@@ -74,7 +74,7 @@ This is by far the most reliable method to detect if a username is available or 
 
 Here are some examples of what a site using this detection method would be configured:
 * Claimed:   https://buzzfeed.com/blue
-* Unclaimed: https://buzzfeed.com/noonewouldeverusethis7
+* Unclaimed: https://buzzfeed.com/noonewouldeverusethis77
 
 Site JSON Data
 ```
