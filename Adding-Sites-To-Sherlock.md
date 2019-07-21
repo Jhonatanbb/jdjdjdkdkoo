@@ -84,7 +84,7 @@ Site JSON Data
     "url": "https://buzzfeed.com/{}",
     "urlMain": "https://buzzfeed.com/",
     "username_claimed":   "blue",
-    "username_unclaimed": "noonewouldeverusethis7"
+    "username_unclaimed": "noonewouldeverusethis77"
   },
 ```
 ## Response URL
@@ -94,7 +94,7 @@ For this detection method, Sherlock will ignore any attempt to follow the re-dir
 
 Here are some examples of what a site using this detection method would be configured:
 * Claimed:   https://www.canva.com/blue
-* Unclaimed: https://www.canva.com/noonewouldeverusethis7
+* Unclaimed: https://www.canva.com/noonewouldeverusethis77
 
 Site JSON Data
 ```
@@ -105,7 +105,7 @@ Site JSON Data
     "url": "https://www.canva.com/{}",
     "urlMain": "https://www.canva.com/",
     "username_claimed":   "blue",
-    "username_unclaimed": "noonewouldeverusethis7"
+    "username_unclaimed": "noonewouldeverusethis77"
   },
 ```
 
