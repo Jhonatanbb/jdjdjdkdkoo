@@ -68,3 +68,32 @@ class QueryResult(Enum):
 So, we can inherit from the base `SherlockDetect()` other detection methods.  `SherlockDetectRequestStatus()`, `SherlockDetectResponseUrl()`, or `SherlockDetectErrorMessage()`...  The individual classes will be able to 
 contain the logic of doing the request in their individual fashion.  And, interpreting the results of this
 request.
+
+== Detection Engine
+This is the area that needs almost as much work as the detection method.
+
+While we need to be able to work with many detection methods, we don't want to re-implementing everything
+each time a new detection method is added.  Any aspect of detection that is going to be common for *all*
+detection methods should be built into a the Detection Engine.  We should be https://en.wikipedia.org/wiki/Don%27t_repeat_yourself[DRY].
+
+What are some of the things to do in the Detection Engine?
+
+* Gather together the list of sites that should be queried. +
+  We might want to check a username against all of the sites we know about.  We might want to check it
+  against only one.
+* Apply valid user name check (if available) +
+  For sites where we have established a regular expression that describes an acceptable format
+  for usernames, we can do this check *before* the query.  This will avoid the costly overhead of
+  doing a query when it is not needed, and will also unburden the detection methods from having
+  to do this.
+* Kick off query in parallel. +
+  The parallel processing is what gives Sherlock its speed.
+* Accumulate results of query +
+  Monitor the parallel process, and gather together the results.
+
+Accumulating the results is going to be tricky.  The Detection Engine should not be doing print statements,
+but the caller of it might.  If we block until all of the results have been established, it will not allow
+the results to stream to the user as they complete: the entire time that the query takes will not be any
+faster, but if you make a human wait for results, they will be frustrated.  Once when the caller of the
+Detection Engine starts the query, they need to poll some completion status?  Grab results as they come in?
+Should their be an alternate interface available that is blocking?
