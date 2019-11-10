@@ -1,0 +1,17 @@
+= Purpose
+
+This is some notes about the long overdue restructuring of Sherlock.
+
+= Goals
+
+1. Make Sherlock work as a general package.
+2. Allow extensibility for other types of detection mechanisms. +
+   Many websites now require Javascript to be enabled before one can query about support for a given username.  We need a line of site to achieve this.
+3. Allow Core Functionality To Be Other Than As A Command Line Tool +
+   While Sherlock has started out as a command line tool, it would also be useful to allow it to be used as an API or as a module for a web site.
+
+= Detail
+
+== Print Statements
+Sherlock has bunches of areas where print statements are embedded directly into the functional aspects of the code.  This needs to be removed.
+Some of these print statements are for troubleshooting (these should be integrated into the logging module).  Others are for printing the results (these need to be deferred to a higher level module whose sole responsibility is printing the results).
