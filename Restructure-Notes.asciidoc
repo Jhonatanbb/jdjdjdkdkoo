@@ -15,3 +15,56 @@ This is some notes about the long overdue restructuring of Sherlock.
 == Print Statements
 Sherlock has bunches of areas where print statements are embedded directly into the functional aspects of the code.  This needs to be removed.
 Some of these print statements are for troubleshooting (these should be integrated into the logging module).  Others are for printing the results (these need to be deferred to a higher level module whose sole responsibility is printing the results).
+
+== Detection Method Abstraction
+This is the area that needs the most work.
+
+There are currently 3 detection mechanisms.
+
+* HTTP Status +
+  As an optimization, only the headers are fetched for this mechanism.  The text of the page is not needed: 
+  only the status code. +
+  NOTE:  Why is there is a special check for GitHub?  The headers optimization is not enabled for it.
+* Response URL +
+  This method disallows redirects.  This is so the original status code can be captured.
+* Error Message +
+  The bête noire of Sherlock...this does a blind search of the text in the response, and detects a failure
+  based on there being a match or not.
+
+Each of these are simply requests.  But, we know that Sherlock is going to have to start understanding
+Javascript if it is going to be able to determine username availability on some sites.  So, the detection
+method abstraction is going to have to be much more open.  At the same time, any new detection methods 
+need to be able to run in parallel.  And, there needs to be enough infrastructure so that the options that
+future methods might use can be passed from the data.json to the method.
+
+I am thinking that there needs to be a base class `SherlockDetect()`.  The only job of this class is to do the
+query. Perhaps this query is to do a basic request and see the return status.  Perhaps, it will use Selenium
+to simulate an entire browser session.  But, when one runs a query via this class, the only thing you are
+going to get back is an enumeration something like the following:
+```python
+from enum import Enum
+
+class QueryResult(Enum):
+    """Query Result Enumeration.
+
+    Describes result of query about a given username.
+    """
+    UNAVAILABLE = "Unavailable"
+    ILLEGAL     = "Illegal"
+    CLAIMED     = "Claimed"
+    AVAILABLE   = "Available"
+
+    def __str__(self):
+        """Convert Object To String.
+
+        Keyword Arguments:
+        self                   -- This object.
+
+        Return Value:
+        Nicely formatted string to get information about this object.
+        """
+        return self.value
+```
+So, we can inherit from the base `SherlockDetect()` other detection methods.  `SherlockDetectRequestStatus()`, `SherlockDetectResponseUrl()`, or `SherlockDetectErrorMessage()`...  The individual classes will be able to 
+contain the logic of doing the request in their individual fashion.  And, interpreting the results of this
+request.
