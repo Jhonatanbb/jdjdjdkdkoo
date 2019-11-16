@@ -10,6 +10,7 @@ Sherlock is not the first tools used to scan for available usernames...and it wi
 * [Penguin API](https://github.com/crock/penguin-api)
 * [Sherlock Implementation In Go](https://github.com/mesuutt/sherlock)
 * [investigo: Sherlock Implementation In Go](https://github.com/tdh8316/Investigo)
+* [socialscan](https://github.com/iojw/socialscan)
 
 Here are some web sites that provide username checking:
 
