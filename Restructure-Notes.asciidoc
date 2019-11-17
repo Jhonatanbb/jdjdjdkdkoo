@@ -16,6 +16,26 @@ This is some notes about the long overdue restructuring of Sherlock.
 Sherlock has bunches of areas where print statements are embedded directly into the functional aspects of the code.  This needs to be removed.
 Some of these print statements are for troubleshooting (these should be integrated into the logging module).  Others are for printing the results (these need to be deferred to a higher level module whose sole responsibility is printing the results).
 
+== Dependencies
+
+Here are the current dependencies for Sherlock:
+```
+beautifulsoup4>=4.8.0
+bs4>=0.0.1
+certifi>=2019.6.16
+colorama>=0.4.1
+lxml>=4.4.0
+PySocks>=1.7.0
+requests>=2.22.0
+requests-futures>=1.0.0
+soupsieve>=1.9.2
+stem>=1.7.1
+torrequest>=0.1.0
+```
+Can we get rid of any of these?  I have lost count of how many times people
+have complained that Sherlock is not working, and it is just that they do
+not have Requests installed.
+
 == Detection Method Abstraction
 This is the area that needs the most work.
 
