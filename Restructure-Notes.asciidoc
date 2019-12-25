@@ -69,10 +69,10 @@ class QueryResult(Enum):
 
     Describes result of query about a given username.
     """
-    UNAVAILABLE = "Unavailable"
-    ILLEGAL     = "Illegal"
-    CLAIMED     = "Claimed"
-    AVAILABLE   = "Available"
+    CLAIMED   = "Claimed"   #Username Detected
+    AVAILABLE = "Available" #Username Not Detected
+    UNKNOWN   = "Unknown"   #Error Occurred While Trying To Detect Username
+    ILLEGAL   = "Illegal"   #Username Not Allowable For This Site
 
     def __str__(self):
         """Convert Object To String.
