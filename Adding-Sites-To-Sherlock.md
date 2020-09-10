@@ -7,7 +7,7 @@ Sherlock relies on the site's designers providing a unique URL for a registered 
 if a username is available, Sherlock queries that URL, and uses to response to understand if there is
 a claimed username already there.
 
-The [data.json](https://github.com/TheYahya/sherlock/blob/master/data.json) file contains all of the
+The [data.json](https://github.com/sherlock-project/sherlock/blob/master/sherlock/resources/data.json) file contains all of the
 information about which sites Sherlock will query usernames for, and how that query should be 
 carried out.
 
